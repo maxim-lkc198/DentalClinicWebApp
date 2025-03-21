@@ -1,70 +1,63 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
-/**
- *
- * @author Admin
- */
 public class Customer {
-    private int CustomerId;
-    private String FullName;
-    private Date DateOfBirth;
-    private String Gender;
-    private int PhoneNumber;
+    private int customerId;
+    private String fullName;
+    private Date dateOfBirth;
+    private String gender;
+    private String phoneNumber;
+    private Timestamp createdAt;
 
-    public Customer(int CustomerId, String FullName, Date DateOfBirth, String Gender, int PhoneNumber) {
-        this.CustomerId = CustomerId;
-        this.FullName = FullName;
-        this.DateOfBirth = DateOfBirth;
-        this.Gender = Gender;
-        this.PhoneNumber = PhoneNumber;
+    public Customer() {
     }
 
+    public Customer(int customerId, String fullName, Date dateOfBirth, String gender, String phoneNumber, Timestamp createdAt) {
+        this.customerId = customerId;
+        this.fullName = fullName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.createdAt = createdAt;
+    }
+
+    // Getters and Setters
     public int getCustomerId() {
-        return CustomerId;
+        return customerId;
     }
-
-    public void setCustomerId(int CustomerId) {
-        this.CustomerId = CustomerId;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
-
     public String getFullName() {
-        return FullName;
+        return fullName;
     }
-
-    public void setFullName(String FullName) {
-        this.FullName = FullName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
-
     public Date getDateOfBirth() {
-        return DateOfBirth;
+        return dateOfBirth;
     }
-
-    public void setDateOfBirth(Date DateOfBirth) {
-        this.DateOfBirth = DateOfBirth;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
-
     public String getGender() {
-        return Gender;
+        return gender;
     }
-
-    public void setGender(String Gender) {
-        this.Gender = Gender;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
-
-    public int getPhoneNumber() {
-        return PhoneNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
-
-    public void setPhoneNumber(int PhoneNumber) {
-        this.PhoneNumber = PhoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
-    
-    
-    
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
 }

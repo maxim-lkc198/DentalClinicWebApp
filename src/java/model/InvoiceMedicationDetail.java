@@ -8,14 +8,14 @@ package model;
  *
  * @author Admin
  */
-public class InvoiceMedicationDetails {
+public class InvoiceMedicationDetail {
     private int InvoiceMedicationDetailId;
     private int InvoiceId;
     private int PrescriptionDetailId;
     private int Quantity;
     private double UnitPrice;
 
-    public InvoiceMedicationDetails(int InvoiceMedicationDetailId, int InvoiceId, int PrescriptionDetailId, int Quantity, double UnitPrice) {
+    public InvoiceMedicationDetail(int InvoiceMedicationDetailId, int InvoiceId, int PrescriptionDetailId, int Quantity, double UnitPrice) {
         this.InvoiceMedicationDetailId = InvoiceMedicationDetailId;
         this.InvoiceId = InvoiceId;
         this.PrescriptionDetailId = PrescriptionDetailId;
