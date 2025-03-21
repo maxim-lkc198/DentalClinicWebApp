@@ -10,14 +10,14 @@ import java.util.Date;
  *
  * @author Admin
  */
-public class Customers {
+public class Customer {
     private int CustomerId;
     private String FullName;
     private Date DateOfBirth;
     private String Gender;
     private int PhoneNumber;
 
-    public Customers(int CustomerId, String FullName, Date DateOfBirth, String Gender, int PhoneNumber) {
+    public Customer(int CustomerId, String FullName, Date DateOfBirth, String Gender, int PhoneNumber) {
         this.CustomerId = CustomerId;
         this.FullName = FullName;
         this.DateOfBirth = DateOfBirth;
