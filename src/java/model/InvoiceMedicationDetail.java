@@ -1,67 +1,66 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author Admin
- */
+import java.math.BigDecimal;
+
 public class InvoiceMedicationDetail {
-    private int InvoiceMedicationDetailId;
-    private int InvoiceId;
-    private int PrescriptionDetailId;
-    private int Quantity;
-    private double UnitPrice;
+    private int invoiceMedicationDetailId;
+    private int invoiceId;
+    private int prescriptionDetailId;
+    private int quantity;
+    private BigDecimal unitPrice;
+    private BigDecimal lineTotal; // computed as quantity * unitPrice
 
-    public InvoiceMedicationDetail(int InvoiceMedicationDetailId, int InvoiceId, int PrescriptionDetailId, int Quantity, double UnitPrice) {
-        this.InvoiceMedicationDetailId = InvoiceMedicationDetailId;
-        this.InvoiceId = InvoiceId;
-        this.PrescriptionDetailId = PrescriptionDetailId;
-        this.Quantity = Quantity;
-        this.UnitPrice = UnitPrice;
+    public InvoiceMedicationDetail() {
     }
 
+    public InvoiceMedicationDetail(int invoiceMedicationDetailId, int invoiceId, int prescriptionDetailId, int quantity, BigDecimal unitPrice) {
+        this.invoiceMedicationDetailId = invoiceMedicationDetailId;
+        this.invoiceId = invoiceId;
+        this.prescriptionDetailId = prescriptionDetailId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.lineTotal = unitPrice.multiply(new BigDecimal(quantity));
+    }
+
+    // Getters and Setters
     public int getInvoiceMedicationDetailId() {
-        return InvoiceMedicationDetailId;
+        return invoiceMedicationDetailId;
     }
-
-    public void setInvoiceMedicationDetailId(int InvoiceMedicationDetailId) {
-        this.InvoiceMedicationDetailId = InvoiceMedicationDetailId;
+    public void setInvoiceMedicationDetailId(int invoiceMedicationDetailId) {
+        this.invoiceMedicationDetailId = invoiceMedicationDetailId;
     }
-
     public int getInvoiceId() {
-        return InvoiceId;
+        return invoiceId;
     }
-
-    public void setInvoiceId(int InvoiceId) {
-        this.InvoiceId = InvoiceId;
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
     }
-
     public int getPrescriptionDetailId() {
-        return PrescriptionDetailId;
+        return prescriptionDetailId;
     }
-
-    public void setPrescriptionDetailId(int PrescriptionDetailId) {
-        this.PrescriptionDetailId = PrescriptionDetailId;
+    public void setPrescriptionDetailId(int prescriptionDetailId) {
+        this.prescriptionDetailId = prescriptionDetailId;
     }
-
     public int getQuantity() {
-        return Quantity;
+        return quantity;
     }
-
-    public void setQuantity(int Quantity) {
-        this.Quantity = Quantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        computeLineTotal();
     }
-
-    public double getUnitPrice() {
-        return UnitPrice;
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
-
-    public void setUnitPrice(double UnitPrice) {
-        this.UnitPrice = UnitPrice;
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
+        computeLineTotal();
+    }
+    public BigDecimal getLineTotal() {
+        return lineTotal;
     }
     
-    
+    private void computeLineTotal() {
+        if(unitPrice != null)
+            this.lineTotal = unitPrice.multiply(new BigDecimal(quantity));
+    }
 }
