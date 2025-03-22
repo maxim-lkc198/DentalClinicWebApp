@@ -20,6 +20,8 @@ public class InvoiceDAO {
                 inv.setInvoiceDate(rs.getTimestamp("InvoiceDate"));
                 inv.setPaymentStatus(rs.getBoolean("PaymentStatus"));
                 inv.setTotalAmount(rs.getBigDecimal("TotalAmount"));
+                inv.setServiceId(rs.getInt("ServiceId"));
+                inv.setServicePrice(rs.getBigDecimal("ServicePrice"));
                 list.add(inv);
             }
         } catch(SQLException ex){
@@ -41,6 +43,8 @@ public class InvoiceDAO {
                     inv.setInvoiceDate(rs.getTimestamp("InvoiceDate"));
                     inv.setPaymentStatus(rs.getBoolean("PaymentStatus"));
                     inv.setTotalAmount(rs.getBigDecimal("TotalAmount"));
+                    inv.setServiceId(rs.getInt("ServiceId"));
+                    inv.setServicePrice(rs.getBigDecimal("ServicePrice"));
                     return inv;
                 }
              }
@@ -51,12 +55,14 @@ public class InvoiceDAO {
     }
     
     public boolean insertInvoice(Invoice invoice) {
-        String sql = "INSERT INTO Invoices (CustomerId, PaymentStatus, TotalAmount) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Invoices (CustomerId, PaymentStatus, TotalAmount, ServiceId, ServicePrice) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
              ps.setInt(1, invoice.getCustomerId());
              ps.setBoolean(2, invoice.isPaymentStatus());
              ps.setBigDecimal(3, invoice.getTotalAmount());
+             ps.setInt(4, invoice.getServiceId());
+             ps.setBigDecimal(5, invoice.getServicePrice());
              return ps.executeUpdate() > 0;
         } catch(SQLException ex){
             ex.printStackTrace();
@@ -65,13 +71,15 @@ public class InvoiceDAO {
     }
     
     public boolean updateInvoice(Invoice invoice) {
-        String sql = "UPDATE Invoices SET CustomerId=?, PaymentStatus=?, TotalAmount=? WHERE InvoiceId=?";
+        String sql = "UPDATE Invoices SET CustomerId=?, PaymentStatus=?, TotalAmount=?, ServiceId=?, ServicePrice=? WHERE InvoiceId=?";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
              ps.setInt(1, invoice.getCustomerId());
              ps.setBoolean(2, invoice.isPaymentStatus());
              ps.setBigDecimal(3, invoice.getTotalAmount());
-             ps.setInt(4, invoice.getInvoiceId());
+             ps.setInt(4, invoice.getServiceId());
+             ps.setBigDecimal(5, invoice.getServicePrice());
+             ps.setInt(6, invoice.getInvoiceId());
              return ps.executeUpdate() > 0;
         } catch(SQLException ex){
             ex.printStackTrace();

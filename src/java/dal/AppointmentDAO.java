@@ -18,6 +18,7 @@ public class AppointmentDAO {
                 a.setAppointmentId(rs.getInt("AppointmentId"));
                 a.setCustomerId(rs.getInt("CustomerId"));
                 a.setDoctorId(rs.getInt("DoctorId"));
+                a.setServiceId(rs.getInt("ServiceId"));
                 a.setAppointmentStartTime(rs.getTimestamp("AppointmentStartTime"));
                 a.setAppointmentEndTime(rs.getTimestamp("AppointmentEndTime"));
                 a.setStatusId(rs.getInt("StatusId"));
@@ -41,6 +42,7 @@ public class AppointmentDAO {
                     a.setAppointmentId(rs.getInt("AppointmentId"));
                     a.setCustomerId(rs.getInt("CustomerId"));
                     a.setDoctorId(rs.getInt("DoctorId"));
+                    a.setServiceId(rs.getInt("ServiceId"));
                     a.setAppointmentStartTime(rs.getTimestamp("AppointmentStartTime"));
                     a.setAppointmentEndTime(rs.getTimestamp("AppointmentEndTime"));
                     a.setStatusId(rs.getInt("StatusId"));
@@ -55,18 +57,19 @@ public class AppointmentDAO {
     }
     
     public boolean insertAppointment(Appointment appointment) {
-        String sql = "INSERT INTO Appointments (CustomerId, DoctorId, AppointmentStartTime, AppointmentEndTime, StatusId, RecordId) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Appointments (CustomerId, DoctorId, ServiceId, AppointmentStartTime, AppointmentEndTime, StatusId, RecordId) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
              ps.setInt(1, appointment.getCustomerId());
              ps.setInt(2, appointment.getDoctorId());
-             ps.setTimestamp(3, new Timestamp(appointment.getAppointmentStartTime().getTime()));
-             ps.setTimestamp(4, new Timestamp(appointment.getAppointmentEndTime().getTime()));
-             ps.setInt(5, appointment.getStatusId());
+             ps.setInt(3, appointment.getServiceId());
+             ps.setTimestamp(4, appointment.getAppointmentStartTime());
+             ps.setTimestamp(5, appointment.getAppointmentEndTime());
+             ps.setInt(6, appointment.getStatusId());
              if(appointment.getRecordId() != null) {
-                 ps.setInt(6, appointment.getRecordId());
+                 ps.setInt(7, appointment.getRecordId());
              } else {
-                 ps.setNull(6, Types.INTEGER);
+                 ps.setNull(7, Types.INTEGER);
              }
              return ps.executeUpdate() > 0;
         } catch(SQLException ex){
@@ -76,20 +79,21 @@ public class AppointmentDAO {
     }
     
     public boolean updateAppointment(Appointment appointment) {
-        String sql = "UPDATE Appointments SET CustomerId=?, DoctorId=?, AppointmentStartTime=?, AppointmentEndTime=?, StatusId=?, RecordId=? WHERE AppointmentId=?";
+        String sql = "UPDATE Appointments SET CustomerId=?, DoctorId=?, ServiceId=?, AppointmentStartTime=?, AppointmentEndTime=?, StatusId=?, RecordId=? WHERE AppointmentId=?";
         try (Connection conn = DBConnect.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
              ps.setInt(1, appointment.getCustomerId());
              ps.setInt(2, appointment.getDoctorId());
-             ps.setTimestamp(3, new Timestamp(appointment.getAppointmentStartTime().getTime()));
-             ps.setTimestamp(4, new Timestamp(appointment.getAppointmentEndTime().getTime()));
-             ps.setInt(5, appointment.getStatusId());
+             ps.setInt(3, appointment.getServiceId());
+             ps.setTimestamp(4, appointment.getAppointmentStartTime());
+             ps.setTimestamp(5, appointment.getAppointmentEndTime());
+             ps.setInt(6, appointment.getStatusId());
              if(appointment.getRecordId() != null) {
-                 ps.setInt(6, appointment.getRecordId());
+                 ps.setInt(7, appointment.getRecordId());
              } else {
-                 ps.setNull(6, Types.INTEGER);
+                 ps.setNull(7, Types.INTEGER);
              }
-             ps.setInt(7, appointment.getAppointmentId());
+             ps.setInt(8, appointment.getAppointmentId());
              return ps.executeUpdate() > 0;
         } catch(SQLException ex){
             ex.printStackTrace();

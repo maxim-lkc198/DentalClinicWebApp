@@ -1,12 +1,12 @@
 package model;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Appointment {
     private int appointmentId;
     private int customerId;
     private int doctorId;
+    private int serviceId; // Mỗi appointment có một service
     private Timestamp appointmentStartTime;
     private Timestamp appointmentEndTime;
     private int statusId;
@@ -15,10 +15,13 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(int appointmentId, int customerId, int doctorId, Timestamp appointmentStartTime, Timestamp appointmentEndTime, int statusId, Integer recordId) {
+    public Appointment(int appointmentId, int customerId, int doctorId, int serviceId,
+                       Timestamp appointmentStartTime, Timestamp appointmentEndTime,
+                       int statusId, Integer recordId) {
         this.appointmentId = appointmentId;
         this.customerId = customerId;
         this.doctorId = doctorId;
+        this.serviceId = serviceId;
         this.appointmentStartTime = appointmentStartTime;
         this.appointmentEndTime = appointmentEndTime;
         this.statusId = statusId;
@@ -43,6 +46,12 @@ public class Appointment {
     }
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
+    }
+    public int getServiceId() {
+        return serviceId;
+    }
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
     }
     public Timestamp getAppointmentStartTime() {
         return appointmentStartTime;

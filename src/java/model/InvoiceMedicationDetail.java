@@ -13,7 +13,8 @@ public class InvoiceMedicationDetail {
     public InvoiceMedicationDetail() {
     }
 
-    public InvoiceMedicationDetail(int invoiceMedicationDetailId, int invoiceId, int prescriptionDetailId, int quantity, BigDecimal unitPrice) {
+    public InvoiceMedicationDetail(int invoiceMedicationDetailId, int invoiceId, int prescriptionDetailId,
+                                   int quantity, BigDecimal unitPrice) {
         this.invoiceMedicationDetailId = invoiceMedicationDetailId;
         this.invoiceId = invoiceId;
         this.prescriptionDetailId = prescriptionDetailId;

@@ -9,16 +9,23 @@ public class Invoice {
     private Timestamp invoiceDate;
     private boolean paymentStatus;
     private BigDecimal totalAmount;
+    
+    // Thông tin service được tích hợp trực tiếp
+    private int serviceId;
+    private BigDecimal servicePrice;
 
     public Invoice() {
     }
 
-    public Invoice(int invoiceId, int customerId, Timestamp invoiceDate, boolean paymentStatus, BigDecimal totalAmount) {
+    public Invoice(int invoiceId, int customerId, Timestamp invoiceDate, boolean paymentStatus,
+                   BigDecimal totalAmount, int serviceId, BigDecimal servicePrice) {
         this.invoiceId = invoiceId;
         this.customerId = customerId;
         this.invoiceDate = invoiceDate;
         this.paymentStatus = paymentStatus;
         this.totalAmount = totalAmount;
+        this.serviceId = serviceId;
+        this.servicePrice = servicePrice;
     }
 
     // Getters and Setters
@@ -51,5 +58,17 @@ public class Invoice {
     }
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
+    }
+    public int getServiceId() {
+        return serviceId;
+    }
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
+    }
+    public BigDecimal getServicePrice() {
+        return servicePrice;
+    }
+    public void setServicePrice(BigDecimal servicePrice) {
+        this.servicePrice = servicePrice;
     }
 }
