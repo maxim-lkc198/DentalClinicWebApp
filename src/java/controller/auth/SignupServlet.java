@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/signup")
 public class SignupServlet extends HttpServlet {
     
     private UserDAO userDAO = new UserDAO();

@@ -5,7 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/error")
 public class ErrorServlet extends HttpServlet {
     
     @Override
