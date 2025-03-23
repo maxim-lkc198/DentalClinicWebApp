@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : signup
     Created on : Mar 23, 2025, 4:54:49 PM
     Author     : Maxim
@@ -11,12 +11,76 @@
     <meta charset="UTF-8">
     <title>Sign Up - Dental Clinic</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f5f8fa; }
-        .signup-container { width: 400px; margin: 50px auto; padding: 20px; background: #fff; border: 1px solid #e1e8ed; border-radius: 5px; }
-        h2 { text-align: center; color: #14171a; }
-        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccd6dd; border-radius: 3px; }
-        button { width: 100%; padding: 10px; background-color: #1da1f2; border: none; color: #fff; font-size: 16px; border-radius: 3px; cursor: pointer; }
-        .error { color: red; text-align: center; }
+        body {
+            font-family: sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 450px; /* Adjust max width for signup form */
+            text-align: center;
+        }
+
+        h2 {
+            color: #1da1f2; /* Twitter blue for heading */
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"], input[type="date"], select {
+            width: calc(100% - 22px); /* Adjust width */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccd6dd;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #17bf63; /* Green for signup button */
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #129b4d;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        p.login-prompt {
+            margin-top: 20px;
+            color: #657786;
+        }
+
+        p.login-prompt a {
+            color: #1da1f2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        p.login-prompt a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -35,7 +99,7 @@
             <input type="password" name="password" placeholder="Password" required />
             <button type="submit">Sign Up</button>
         </form>
-        <p style="text-align: center;">Already have an account? <a href="login.jsp">Login</a></p>
+        <p class="login-prompt">Already have an account? <a href="login.jsp">Login</a></p>
         <div class="error">
             <%
                 String errorMessage = (String) request.getAttribute("errorMessage");
